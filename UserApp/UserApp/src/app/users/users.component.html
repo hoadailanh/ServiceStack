@@ -1,0 +1,75 @@
+<h3> User List <button type="button" class="btn btn-link" (click)="openModal(template, null)">Create user</button></h3>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Create/Save User</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name-label">Name</span>
+      </div>
+      <input type="text" class="form-control" id="name" aria-describedby="name-label" [(ngModel)]="user.name">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email-label">Email</span>
+      </div>
+      <input type="text" class="form-control" id="email" aria-describedby="email-label" [(ngModel)]="user.email">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="password-label">Password</span>
+      </div>
+      <input type="text" class="form-control" id="password" aria-describedby="password-label" [(ngModel)]="user.password">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="statusSelect">Options</label>
+      </div>
+      <select class="custom-select" id="statusSelect" [(ngModel)]="user.status">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+        <option value="Locked">Locked</option>
+        <option value="Unlocked">Unlocked</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Cancel</button>
+    <button type="button" class="btn btn-default" (click)="saveUser()">Save</button>
+  </div>
+</ng-template>
+
+
+<div *ngIf="users">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i=index; trackBy: trackByFn">
+        <th scope="row">{{i+1}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.status}}</td>
+        <td>
+          <a class="link" (click)="openModal(template, user)">Edit</a> /
+          <a class="link" (click)="deleteUser(user)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

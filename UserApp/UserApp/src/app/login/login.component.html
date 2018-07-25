@@ -1,0 +1,20 @@
+<div id="login">
+  <h3>Please login</h3>
+  <h4>hint: userName = admin@localhost.com, password = Admin</h4>
+  <div class="login-container">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name-label">User Name</span>
+      </div>
+      <input type="text" class="form-control" id="userName" aria-describedby="name-label" [(ngModel)]="userName">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email-label">Password</span>
+      </div>
+      <input type="password" class="form-control" id="password" aria-describedby="email-label"  [(ngModel)]="password">
+    </div>
+    <button type="button" class="btn btn-default btn-block" (click)="login()">Login</button>
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+@import '../../app.scss';
+
+.result {
+    margin: 10px;
+    color: darken($navbar-background, 10%);
+}
+
+.link {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
